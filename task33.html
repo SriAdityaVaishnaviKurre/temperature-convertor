@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        input, button, select {
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+            width: 100%;
+            height: 45px;
+            background-color: rgb(27, 148, 228);
+            border: none;
+            color: white;
+            border-radius: 10px;
+        }
+        .result {
+            font-size: 18px;
+            color: black;
+            border-bottom: 1px solid grey;
+        }
+        .select{
+            height: 33px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div style="float: left;">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">9:41</div>
+            </div>
+            <div style="float: right;">
+            <i class="fa-solid fa-chart-simple"></i>
+            <i class="fa-solid fa-wifi"></i>
+            <i class="fa-solid fa-battery-full"></i>
+        </div><br>
+        </div>
+        <h4 style="text-align: center;">Temperature Converter</h4>
+        <div>
+            <div class="row">
+            <div style="float: left;width: 40%;">
+            <label for="" style="color: rgb(163, 159, 159);text-align: left;">Degrees</label><br><br>
+            <input type="number" id="temperatureInput" style="border: none;border-bottom: 1px rgb(126, 122, 122) solid;" >
+            </div>
+            <div style="float: right;width: 40%;">
+                <label for="" style="color: rgb(163, 159, 159);text-align: left;">Type</label><br><br>
+            <select id="unitSelect" class="select">
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="celsius">Celsius</option>
+            </select>
+            </div>
+            </div><br><br><br><br>
+            <div style="color: rgb(163, 159, 159);">
+            <label for="">Result:</label><br><br><br>
+            <div class="result" id="result"></div>
+            </div>
+            <br><br>
+            <button onclick="convertTemperature()" class="button">Convert</button>
+        </div>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            var temp = document.getElementById('temperatureInput').value;
+            var unit = document.getElementById('unitSelect').value;
+            var resultText = '';
+
+            if (unit === 'celsius') {
+                var fahrenheit = (temp * 9/5) + 32;
+                resultText = `${fahrenheit.toFixed(2)}°F`;
+            } else if (unit === 'fahrenheit') {
+                var celsius = (temp - 32) * 5/9;
+                resultText = `${celsius.toFixed(2)}°C`;
+            }
+            document.getElementById('result').innerText = resultText;
+        }
+    </script>
+</body>
+</html>
